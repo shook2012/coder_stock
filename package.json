@@ -1,0 +1,17 @@
+{
+  "name": "coder_stock",
+  "version": "1.0.0",
+  "description": "This stock tools just for coders",
+  "main": "stock.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index"
+  },
+  "author": "Sam.fan",
+  "license": "MIT",
+  "dependencies": {
+    "colors": "^1.1.2",
+    "gbk": "^0.1.0",
+    "request": "^2.60.0"
+  }
+}
