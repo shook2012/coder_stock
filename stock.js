@@ -34,7 +34,7 @@ var stocker = {
             var result = resultArr[i]
             var dataStr = result.substring(result.indexOf("=") + 2, result.length - 1)
             var datas = dataStr.split(',')
-
+            //上证指数
             if(result.indexOf("sh000001") > -1){
                 var stockName = datas[0]
                 console.log("------------------------------" + stockName + "------------------------------------------")
@@ -49,11 +49,13 @@ var stocker = {
                 var stockName = datas[0]
                 if(!stockName.trim()) continue
                 console.log("------------------------------" + stockName + "------------------------------------------")
-                if(datas[3] - datas[2] < 0){
-                    stocker.fallMsg("当前价:%s  跌幅:%s  今开:%s  昨收:%s",(datas[3]),(((datas[2] - datas[3])/datas[2]*100)+"%"),(datas[1]),(datas[2]));
+                var currentPrice = datas[3];
+                var yestodayPrice = datas[2];
+                if(currentPrice - yestodayPrice < 0){
+                    stocker.fallMsg("当前价:%s  跌幅:%s  今开:%s  昨收:%s",(currentPrice),(((yestodayPrice - currentPrice)/yestodayPrice*100)+"%"),(datas[1]),(yestodayPrice));
                     stocker.fallMsg("最高:%s 最低:%s 买价:%s 卖价:%s",datas[4],datas[5],datas[6],datas[7])
                 }else{
-                    stocker.riseMsg("当前价:%s  涨幅:%s  今开:%s  昨收:%s",(datas[3]),(((datas[3] - datas[2])/datas[2]*100)+"%"),(datas[1]),(datas[2]));
+                    stocker.riseMsg("当前价:%s  涨幅:%s  今开:%s  昨收:%s",(currentPrice),(((currentPrice - yestodayPrice)/yestodayPrice*100)+"%"),(datas[1]),(yestodayPrice));
                     stocker.riseMsg("最高:%s 最低:%s 买价:%s 卖价:%s",datas[4],datas[5],datas[6],datas[7])
                 }
 
